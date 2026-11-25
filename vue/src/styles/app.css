@@ -1,0 +1,171 @@
+/*
+ * Twin Taskboard styles.
+ * This file is byte-identical in react/ and vue/ (checked by scripts/check-parity.mjs)
+ * so both builds look exactly the same.
+ */
+:root {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --text: #1c2333;
+  --muted: #5b6478;
+  --border: #d9deea;
+  --primary: #3b5bdb;
+  --primary-strong: #2f4ac0;
+  --danger: #c92a2a;
+  --success: #2b8a3e;
+  --warning: #e67700;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgb(16 24 40 / 6%), 0 4px 12px rgb(16 24 40 / 6%);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.45;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app { max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; }
+.app-header h1 { margin: 0; font-size: 1.9rem; letter-spacing: -0.02em; }
+.tagline { margin: 4px 0 20px; color: var(--muted); }
+main { display: grid; gap: 16px; }
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+.panel h2 { margin: 0 0 12px; font-size: 1.1rem; }
+
+/* Summary */
+.summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+}
+.stat-value { font-size: 1.6rem; font-weight: 700; }
+.stat-label { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.stat-done .stat-value { color: var(--success); }
+.stat-overdue .stat-value { color: var(--danger); }
+
+/* Form */
+.task-form { display: grid; gap: 12px; }
+.field { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.field-row { display: flex; gap: 12px; flex-wrap: wrap; }
+label { font-weight: 600; font-size: 0.9rem; }
+input[type='text'], input[type='search'], input[type='date'], textarea, select {
+  font: inherit;
+  color: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+}
+textarea { resize: vertical; }
+[aria-invalid='true'] { border-color: var(--danger); }
+.field-error { margin: 0; color: var(--danger); font-size: 0.85rem; }
+.form-actions { display: flex; gap: 8px; }
+
+/* Buttons */
+.btn {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+.btn:hover:not(:disabled) { border-color: var(--primary); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--primary-strong); }
+.btn-danger { color: var(--danger); }
+.btn-small { padding: 4px 10px; font-size: 0.8rem; }
+:focus-visible { outline: 3px solid rgb(59 91 219 / 45%); outline-offset: 2px; }
+.file-btn:focus-within { outline: 3px solid rgb(59 91 219 / 45%); outline-offset: 2px; }
+
+/* Toolbar */
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
+.filters { display: flex; gap: 6px; }
+.chip {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+}
+.chip.is-active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.search { flex: 1; min-width: 180px; display: flex; }
+.search input { width: 100%; font-weight: 400; }
+.sort { display: flex; align-items: center; gap: 6px; }
+.sort label { font-weight: 400; color: var(--muted); }
+
+/* List */
+.result-count { margin: 0 0 8px; color: var(--muted); font-size: 0.85rem; }
+.task-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.task-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: start;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--border);
+  border-radius: 8px;
+}
+.task-item.priority-high { border-left-color: var(--danger); }
+.task-item.priority-medium { border-left-color: var(--warning); }
+.task-item.priority-low { border-left-color: var(--success); }
+.task-item.is-editing { background: #eef2ff; }
+.task-item.is-done .task-title { text-decoration: line-through; color: var(--muted); }
+.task-toggle { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--primary); }
+.task-title { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.task-description { margin: 2px 0 0; color: var(--muted); font-size: 0.9rem; overflow-wrap: anywhere; }
+.task-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; font-size: 0.8rem; align-items: center; }
+.badge { padding: 1px 8px; border-radius: 999px; font-weight: 600; }
+.badge-high { background: #ffe3e3; color: #a51111; }
+.badge-medium { background: #fff1db; color: #8f4a00; }
+.badge-low { background: #e1f5e5; color: #1e6b30; }
+.due { color: var(--muted); }
+.overdue-label { color: var(--danger); font-weight: 700; }
+.task-item.is-overdue .due { color: var(--danger); }
+.task-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.confirm-text { font-size: 0.8rem; color: var(--danger); }
+.empty-state { margin: 12px 0; padding: 24px; text-align: center; color: var(--muted); border: 1px dashed var(--border); border-radius: 8px; }
+
+/* Data */
+.data-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.status { min-height: 1.5em; margin: 16px 0 0; color: var(--muted); font-size: 0.9rem; }
+.app-footer { margin-top: 8px; color: var(--muted); font-size: 0.8rem; }
+
+@media (max-width: 600px) {
+  .summary { grid-template-columns: repeat(2, 1fr); }
+  .task-item { grid-template-columns: auto 1fr; }
+  .task-actions { grid-column: 1 / -1; justify-content: flex-start; }
+}
