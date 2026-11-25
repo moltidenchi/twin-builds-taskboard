@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+*.local
+.env
+.env.*
+.DS_Store
+# Playwright artefacts
+e2e/test-results/
+e2e/playwright-report/
+e2e/blob-report/
+# Local copy of docs/screenshots (not tracked twice)
+/screenshots/
+# Assembled Pages artefact (CI builds it)
+/_site/
