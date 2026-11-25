@@ -1,0 +1,8 @@
+{
+  "app": "twin-taskboard",
+  "version": 1,
+  "tasks": [
+    { "id": "ok-1", "title": "Valid task", "description": "", "priority": "low", "due": "", "done": false, "createdAt": "2026-01-01T00:00:00.000Z" },
+    { "id": "bad-2", "title": "", "description": "", "priority": "urgent", "due": "not-a-date", "done": "no", "createdAt": "2026-01-01T00:00:00.000Z" }
+  ]
+}
